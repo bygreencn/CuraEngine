@@ -141,7 +141,6 @@ bool FffPolygonGenerator::sliceModel(MeshGroup* meshgroup, TimeKeeper& timeKeepe
 void FffPolygonGenerator::slices2polygons(SliceDataStorage& storage, TimeKeeper& time_keeper)
 {
     // compute layer count and remove first empty layers
-//     Progress::messageProgressStage(Progress::Stage::INSET_SKIN, &time_keeper); // there is no separate progress stage for removeEmptyFisrtLayer
     unsigned int total_layers = 0;
     for (SliceMeshStorage& mesh : storage.meshes)
     {
