@@ -411,7 +411,7 @@ void FffPolygonGenerator::processSkinsAndInfill(SliceMeshStorage& mesh, unsigned
     
     int wall_line_count = mesh.getSettingAsCount("wall_line_count");
     int skin_extrusion_width = mesh.getSettingInMicrons("skin_line_width");
-    int innermost_wall_extrusion_width = (wall_line_count == 1)? mesh.getSettingInMicrons("wall_line_width_0") : mesh.getSettingInMicrons("wall_line_width_x");
+    int innermost_wall_extrusion_width = (wall_line_count == 1) ? mesh.getSettingInMicrons("wall_line_width_0") : mesh.getSettingInMicrons("wall_line_width_x");
     generateSkins(layer_nr, mesh, skin_extrusion_width, mesh.getSettingAsCount("bottom_layers"), mesh.getSettingAsCount("top_layers"), wall_line_count, innermost_wall_extrusion_width, mesh.getSettingAsCount("skin_outline_count"), mesh.getSettingBoolean("skin_no_small_gaps_heuristic"), mesh.getSettingBoolean("remove_overlapping_walls_0_enabled"), mesh.getSettingBoolean("remove_overlapping_walls_x_enabled"));
     if (mesh.getSettingInMicrons("infill_line_distance") > 0)
     {
@@ -528,7 +528,7 @@ void FffPolygonGenerator::processFuzzyWalls(SliceMeshStorage& mesh)
         for (SliceLayerPart& part : layer.parts)
         {
             Polygons results;
-            Polygons& skin = (mesh.getSettingAsSurfaceMode("magic_mesh_surface_mode") == ESurfaceMode::SURFACE)? part.outline : part.insets[0];
+            Polygons& skin = (mesh.getSettingAsSurfaceMode("magic_mesh_surface_mode") == ESurfaceMode::SURFACE) ? part.outline : part.insets[0];
             for (PolygonRef poly : skin)
             {
                 // generate points in between p0 and p1
