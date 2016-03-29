@@ -277,17 +277,10 @@ void AreaSupport::generateSupportAreas(SliceDataStorage& storage, unsigned int m
 std::pair<Polygons, Polygons> AreaSupport::computeBasicAndFullOverhang(const SliceDataStorage& storage, const SliceMeshStorage& mesh, const unsigned int layer_idx, const int64_t max_dist_from_lower_layer)
 {
     Polygons supportLayer_supportee = mesh.layers[layer_idx].getOutlines();
-    Polygons supportLayer_supporter = storage.getLayerOutlines(layer_idx-1, false);
+    Polygons supportLayer_supporter = storage.getLayerOutlines(layer_idx - 1, false);
 
     Polygons supportLayer_supported =  supportLayer_supporter.offset(max_dist_from_lower_layer);
     Polygons basic_overhang = supportLayer_supportee.difference(supportLayer_supported);
-
-//     Polygons support_extension = basic_overhang.offset(max_dist_from_lower_layer);
-//     support_extension = support_extension.intersection(supportLayer_supported);
-//     support_extension = support_extension.intersection(supportLayer_supportee);
-//     
-//     Polygons overhang =  basic_overhang.unionPolygons(support_extension);
-//         presumably the computation above is slower than the one below
 
     Polygons overhang_extented = basic_overhang.offset(max_dist_from_lower_layer + 100); // +100 for easier joining with support from layer above
     Polygons full_overhang = overhang_extented.intersection(supportLayer_supported.unionPolygons(supportLayer_supportee));
